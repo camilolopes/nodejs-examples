@@ -5,11 +5,15 @@ bodyParser = require('body-parser'),
 load = require('express-load'),
 app = express();
 
+const KEY = 'ntalk.sid';
+const SECRET = 'ntalk';
+
 app.set('views',__dirname + '/views');
 app.set('view engine', 'ejs');
 app.use(cookieParser());
-app.use(session({ secret: 'ntalk', key: 'sid', cookie: { secure: true }}));
-app.use(bodyParser());
+app.use(session({ secret: SECRET, key: KEY, cookie: { secure: true }}));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
 app.use(express.static(__dirname + '/public')); 
 
 /*app.get('/', routes.index);
