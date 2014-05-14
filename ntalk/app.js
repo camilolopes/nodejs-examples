@@ -10,10 +10,16 @@ const SECRET = 'ntalk';
 
 app.set('views',__dirname + '/views');
 app.set('view engine', 'ejs');
-app.use(cookieParser());
+/*app.use(cookieParser());
 app.use(session({ secret: SECRET, key: KEY, cookie: { secure: true }}));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded());*/
+app.use(express.cookieParser('ntalk'));
+app.use(express.session());
+app.use(express.json());
+app.use(express.urlencoded());
+app.use(express.methodOverride());
+app.use(app.router);
 app.use(express.static(__dirname + '/public')); 
 
 /*app.get('/', routes.index);
